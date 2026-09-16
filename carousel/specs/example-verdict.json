@@ -1,0 +1,27 @@
+{
+  "_note": "INVENTED EXAMPLE. Sam is a made-up bookkeeper and the bakery is made up. Every number is invented to show the format, including the screenshot in images/example-shot.png.",
+  "id": "example-verdict",
+  "goal": "reach",
+  "cover_device": "verdict",
+  "body": "casestudy",
+  "theme": "dark",
+  "slides": [
+    {"n": 1, "role": "cover", "kicker_top": "Invented example",
+     "title": "Profit is not cash in the bank.",
+     "kicker": "A profitable year nearly closed a small bakery."},
+    {"n": 2, "role": "item", "numeral": "1", "idx": "The problem", "title": "Stock paid for months ahead",
+     "does": "Flour and packaging were bought three months ahead for a bulk discount. The cash left long before the sales came in.",
+     "got": "The accounts showed a profit. The bank account showed <b>eleven days of runway.</b>",
+     "cue": "eleven days of runway"},
+    {"n": 3, "role": "item", "idx": "The fix", "title": "A weekly cash sheet",
+     "does": "One sheet, every Friday: what came in, what went out, what falls due in the next four weeks.",
+     "shot": "images/example-shot.png"},
+    {"n": 4, "role": "item", "numeral": "3", "idx": "The result", "title": "Smaller orders, more often",
+     "does": "Stock is now bought fortnightly. The discount is smaller, and the cash stays put until it is needed.",
+     "got": "Runway went from eleven days to <b>seven weeks</b> in one quarter.",
+     "cue": "seven weeks"},
+    {"n": 5, "role": "cta", "title": "Which one would you pick: the discount or the runway?",
+     "cta": "Tell me in the comments."}
+  ],
+  "caption": "INVENTED EXAMPLE CAPTION. The bakery made a profit last year and still nearly closed."
+}

@@ -1,0 +1,36 @@
+# Where the kit's engine came from
+
+Built: 2026-09-16.
+
+The engine in this kit is a cleaned copy of a content system that was used in production by one
+person. Every program was rewritten to remove that person's names, business, prices, paths,
+sign-off line, banned words, client names and history notes, and to read personal settings from
+`config.json` instead.
+
+Source paths below are relative to the original private notes folder. The name of the project
+folder is withheld from the public kit and written as `<source>`.
+
+## Engine programs
+
+| Kit file | Source file | What changed |
+|---|---|---|
+| `engine/kitconfig.py` | new | Reads `config.json`, falls back to `config.example.json` with a warning, fills missing settings with defaults, resolves every folder from the repo root. Safe writes (temp file then swap) and append-only log writes live here, so every program shares them. |
+| `engine/findings.py` | `<source>/engine/findings.py` | Store paths now relative to the repo. `brief()` with no step returns **every** live lesson grouped by step (each lesson written in full once). New `record_applied()` and `live_ids()`. `retire` refuses an id that is not live. History notes removed. Self-test runs in a temporary folder and never touches `data/`. The `applied` command was removed; stamping records use. **After a beta test:** refuses an action shorter than 4 words, and every command refuses an option it does not know and lists the valid ones. |
+| `engine/commission_gate.py` | `<source>/engine/commission_gate.py` | **Fix:** `--stamp` stamps every live lesson from every step, not only lessons tagged for one step, and the gate checks the brief against all live lessons. Banned subjects, pitch words, refused premise-source words and hook first-line length now come from config. `grounding:` resolves from the repo root or next to the brief. A hook opening on "I" is a flag, not a fail, matching `post_checks.py`. Personal reader description, rulings, quotes and wave history removed. Self-test added. **After a beta test:** refuses a brief that still contains `[FILL IN` (names the first 3 line numbers). Banned subjects are plain words or phrases matched as whole words unless the entry has `"regex": true`, and a pattern that can never match (a hidden control character, or a backslash without `regex`) is reported instead of ignored. The premise message names the refused word. |
+| `engine/post_checks.py` | `<source>/engine/post_checks.py` | **Fix:** sign-off is a setting (`required` fails when missing; `optional` and `off` never check). Uncontracted-negative limit, "you" density limits, long-sentence rule, long dash rule, vague filler rule and banned phrases come from config, each switchable off. The fleet-count ban was replaced by the general `banned_phrases` setting. Personal banned words now read from `your-voice/banned_words.json`. All history comments, rulings and quotes removed. Self-test added. |
+| `engine/banned_words.py` | `<source>/engine/ruled_bans.py` | Rewritten. The two personal word families and their rulings were removed. It now reads `hard_words`, `soft_words`, `allowed_phrases` and `replace_with` from `your-voice/banned_words.json`, with whole-word matching, a trailing `*` wildcard, and allowed phrases blanked before the scan. Self-test uses invented words. **After a beta test:** `--help` prints help, and a missing file is reported instead of crashing. |
+| `engine/assert_not_evidence.py` | `<source>/engine/assert_not_evidence.py` | Docstring and messages rewritten without quoted posts. Two patterns that were verbatim lines from one person's rejected posts were removed. File scan command and self-test with invented lines added. |
+| `engine/rule_tables.py` | `<source>/engine/hook_prefilter.py` | Tables only: long dash, markdown, emoji, machine-filler words, wind-up phrases, reveal phrases, vague filler scan. The old hook tournament command, its self-test and its data file were dropped. The "stuff" exception is now a parameter. Personal notes removed. New self-test. |
+| `engine/unicode_scrub.py` | `<source>/engine/unicode_scrub.py` | Imports of an external skill by path removed; the character tables are built in and wider than the old fallback. The publishing-queue mode was replaced by `<file> --fix` (safe write). Self-test added. |
+| `engine/batch_checks.py` | `<source>/engine/batch_checks.py` | Sign-off from config: removed before comparing posts, and a HARD finding for any post missing it when `signoff_rule` is `required`. Short and long length targets from config (a "no long post" flag was added beside "no short post"). Default folder from `drafts_dir`. Long history comments quoting past drafts removed. Self-test added. |
+| `engine/preview_linkedin.py` | `<source>/engine/preview_linkedin.py` | **Fix:** opens with Python's `webbrowser` (default browser), not a fixed browser path. Reads `drafts_dir` from config or `--dir`. Name, initials and headline from config. Carousel and repurposed-clip branches removed. Invented like and comment counts removed. Image and video paths resolve from the draft's folder or the repo root; image type follows the file extension. Output path from config. Self-test added. |
+| `engine/provenance.py` | `<source>/engine/provenance.py` | Ledger moved to `data/publish-provenance.jsonl`. The text recorded and hashed is now the live post as `post_checks.py` sees it (notes, headings and old `## Draft N` sections removed), not everything below the header block. Sign-off for the text hash from config. Records `brief_id` and `feeling` too; default author is "machine". `reconcile` now reads `your-voice/my-posts.csv` (column `text`) instead of a private performance record, and is optional. Folder names and piece ids removed from help and self-test. |
+| `engine/mine_transcripts.py` | `<source>/engine/mine_transcripts.py` | **Fix:** speaker labels, transcript folders, start date, output folder and minimum line length from config; the old output went to a temporary folder from one work session. Understands `Name: words`, a time before the name (`[00:12:03] Name:`, `00:12:03 Name:`, `(00:12) Name:`), a name on its own line with the words below, and WebVTT voice tags. Reads .md, .txt, .vtt and .srt at any depth. The collapsed-labels set-aside rule (one label owning 95%+ of 20+ turns) is kept. Writes only inside `mining_output_dir` and refuses the repo root. Refuses to run with empty or placeholder labels. Self-test uses invented transcripts. **After a beta test:** new setting `include_other_speaker_context`, default false, so the month files contain only your own lines; `--help` prints help and an unknown option is refused instead of running the miner. |
+
+## Settings and data
+
+| Kit file | Source | What changed |
+|---|---|---|
+| `config.example.json` | new | Every personal setting in one file with a plain-English note for each under `_notes`. Placeholders for name, headline and speaker labels. Taste thresholds marked as starting defaults from one person's rejections, each with how to switch it off. |
+| `data/findings.jsonl` | `<source>/data/findings.jsonl` | Shipped empty. The original lessons were personal. |
+| `data/findings-applied.jsonl` | `<source>/data/findings-applied.jsonl` | Not shipped. Created on your computer the first time you stamp a brief, and kept out of git. |

@@ -1,0 +1,14 @@
+{
+  "_notes": [
+    "YOUR HOUSE RULES. Empty by default. Fill these in with words and phrasings you never want on a slide.",
+    "banned_words: whole words, any capitalisation. Example: [\"synergy\", \"leverage\"]. A hit stops the render.",
+    "banned_phrases: any capitalisation, matched anywhere in the text. Example: [\"game changer\", \"in today's world\"]. A hit stops the render.",
+    "signoff_line: the line you end every post caption with, if you have one. Leave empty if not.",
+    "signoff_required: true means the spec's caption must end with signoff_line. The sign-off never goes on a slide.",
+    "Keys starting with an underscore are ignored by the checker."
+  ],
+  "banned_words": [],
+  "banned_phrases": [],
+  "signoff_line": "",
+  "signoff_required": false
+}

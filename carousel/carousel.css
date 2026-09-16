@@ -1,0 +1,133 @@
+/* Carousel layout. Sizes, spacing and the arrangement of each slide type.
+   Colours, fonts and the logo position come from brand/brand.css. Edit that file, not this one,
+   unless you want to change the layout itself.
+
+   Slides are 1080 x 1350 pixels (LinkedIn's 4:5 document shape).
+   Two kinds of slide:
+     cover  - one job: be readable in under a second in a scrolling feed. Type at maximum size.
+     others - one job: teach one item. Quiet background, a big faint number, one highlighted phrase. */
+
+@import url("brand/brand.css");
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+.slide {
+  width:1080px; height:1350px; position:relative; overflow:hidden;
+  background:var(--ground); color:var(--ink);
+  font-family:var(--font-main);
+  display:flex; flex-direction:column;
+}
+
+/* ---------- cover --------------------------------------------------------------------------- */
+.cover .inner { justify-content:center; padding:96px 84px 150px; }
+.cover .kicker-top {
+  font-family:var(--font-label); font-size:28px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:34px;
+}
+.cover .title { font-size:124px; font-weight:800; line-height:.98; letter-spacing:-.025em; }
+.cover .title .lead { display:block; font-size:230px; line-height:.82; }
+.cover .kicker { margin-top:44px; font-size:40px; line-height:1.26; opacity:.72; max-width:840px; }
+
+/* ---------- item slides --------------------------------------------------------------------- */
+.inner { position:relative; z-index:3; flex:1; display:flex; flex-direction:column; padding:84px 76px 132px; }
+
+/* The big number: the largest shape on an item slide. It shows the position in the list. */
+.num {
+  position:absolute; right:52px; bottom:40px; z-index:1;
+  font-size:580px; font-weight:800; line-height:.72; letter-spacing:-.06em;
+  color:var(--ink); opacity:.07;
+}
+
+.idx { font-family:var(--font-label); font-size:25px; letter-spacing:.3em; text-transform:uppercase;
+       color:var(--accent); margin-bottom:24px; }
+
+.title { font-size:88px; font-weight:800; line-height:1.03; letter-spacing:-.02em; }
+.title.long { font-size:76px; }
+
+.does { margin-top:84px; font-size:42px; line-height:1.34; font-weight:600; max-width:900px; }
+.got  { margin-top:22px; font-size:36px; line-height:1.42; max-width:900px; opacity:.86; }
+
+/* The highlighted phrase: an inverted block, one per slide. */
+.cue {
+  background:var(--ink); color:var(--ground);
+  padding:.04em .18em; font-weight:800;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+}
+
+/* ---------- centred slides: closing call to action, credibility, stakes -------------------- */
+.slide.cta .inner,
+.slide.credibility .inner,
+.slide.closing .inner { justify-content:center; padding-bottom:150px; }
+
+/* ---------- a screenshot on an item slide --------------------------------------------------- */
+.slide.hasshot .inner { justify-content:center; padding-top:84px; }
+.slide.hasshot .does { margin-top:40px; font-size:40px; }
+.shot {
+  margin-top:56px; border:1px solid var(--frame-border); border-radius:12px; overflow:hidden;
+  box-shadow:var(--frame-shadow); background:var(--frame-bg);
+}
+.shot img { display:block; width:100%; height:auto; max-height:720px; object-fit:contain; }
+
+/* ---------- a button shape (a PDF is not clickable; this is only a visual prompt) ----------- */
+.btn {
+  align-self:flex-start; margin-top:52px;
+  background:var(--ink); color:var(--ground);
+  font-size:46px; font-weight:800; letter-spacing:-.01em;
+  padding:26px 52px; border-radius:16px;
+}
+
+/* ---------- closing diagram ----------------------------------------------------------------- */
+.graph { position:absolute; inset:0; z-index:1; }
+.graph text { fill:var(--ink); font-size:34px; font-weight:700; font-family:var(--font-main); }
+.graph .edge { stroke:var(--muted); stroke-opacity:.45; stroke-width:3; }
+.graph .edge.on { stroke:var(--ink); stroke-opacity:1; stroke-width:7; }
+.graph .node { fill:var(--ink); }
+
+/* ---------- logo and swipe arrow ------------------------------------------------------------ */
+.logo {
+  position:absolute; z-index:5;
+  left:var(--logo-left); right:var(--logo-right); bottom:var(--logo-bottom); top:var(--logo-top);
+  width:var(--logo-width); height:auto;
+}
+.cover .logo { width:var(--logo-width-cover); }
+
+.swipe { position:absolute; z-index:4; right:76px; bottom:60px;
+  font-family:var(--font-label); font-size:24px; letter-spacing:.2em; color:var(--accent); }
+
+/* ---------- cover styles (cover_device in the spec; rules in check/device_rules.py) --------- */
+.cover .title, .title { text-wrap:balance; }
+
+/* word: one giant word is the picture */
+.cover.dev-word .title .lead { font-size:290px; line-height:.8; letter-spacing:-.04em; }
+.cover.dev-word .title { font-size:96px; }
+
+/* question */
+.cover.dev-question .title { font-size:140px; }
+.cover.dev-question .title .lead { display:block; font-size:260px; line-height:.8; color:var(--accent); }
+
+/* verdict: one flat statement at maximum size */
+.cover.dev-verdict .title { font-size:148px; line-height:1.0; }
+
+/* split: two short phrases, the second one inverted */
+.cover.dev-split .split-top { font-size:112px; font-weight:800; line-height:1.0; padding:24px 0; letter-spacing:-.02em; }
+.cover.dev-split .split-bottom { font-size:112px; font-weight:800; line-height:1.0; padding:24px 28px; letter-spacing:-.02em;
+  background:var(--ink); color:var(--ground); align-self:flex-start; }
+.cover.dev-split .split-title { font-size:60px; margin-top:48px; opacity:.85; }
+
+/* endstate: the result gets the size */
+.cover.dev-endstate .title .lead { display:block; font-size:250px; line-height:.82; }
+.cover.dev-endstate .title { font-size:104px; }
+
+/* masthead: one dominant line and one quiet line */
+.cover.dev-masthead .title { font-size:136px; }
+.cover.dev-masthead .kicker { font-size:34px; opacity:.6; }
+
+/* ---------- stakes and summary slides (body "stakes_tldr") --------------------------------- */
+.slide.stakes .inner { justify-content:center; text-align:center; }
+.slide.stakes .title { font-size:84px; }
+
+.slide.summary .inner { justify-content:center; }
+.sumlines { margin-top:36px; }
+.sumline { font-size:52px; font-weight:700; line-height:1.4; padding:12px 0;
+  border-bottom:2px solid var(--muted); }
+.sumline:last-child { border-bottom:none; }

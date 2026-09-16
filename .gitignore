@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+*.tmp
+
+# ------------------------------------------------------------------------------------------
+# PRIVATE MATERIAL. NEVER PUSH THESE.
+# Once you fill in the kit, the files below contain private material: your clients' words,
+# names and figures from call transcripts, the lines mined from those calls, your post
+# numbers, your settings and your review pages. They must never be pushed to GitHub or any
+# other public place. If you put your copy on GitHub at all, make the repository private.
+#
+# Note: git keeps tracking a file it already tracks, even once it is listed here. Before
+# your first commit, run `git status` and check none of these paths is listed.
+# ------------------------------------------------------------------------------------------
+config.json
+transcripts/
+your-voice/opinions/turns/
+your-voice/my-posts.csv
+preview/
+data/findings-applied.jsonl
+data/publish-provenance.jsonl
+
+# Carousel output (rendered slides, PDFs and phone images for your own decks)
+carousel/specs/*-output/

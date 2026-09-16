@@ -1,0 +1,31 @@
+{
+  "_note": "INVENTED EXAMPLE. Sam is a made-up bookkeeper and the shop is made up. Every number is invented to show the format. This deck ends on a diagram, so it has no call-to-action slide (a diagram must be the last slide).",
+  "id": "example-split",
+  "goal": "save",
+  "cover_device": "split",
+  "body": "beforeafter",
+  "theme": "light",
+  "slides": [
+    {"n": 1, "role": "cover", "kicker_top": "Invented example",
+     "top": "Receipts in a shoebox.",
+     "bottom": "Books closed in a day.",
+     "title": "Three habits that changed one small shop"},
+    {"n": 2, "role": "item", "numeral": "1", "idx": "Habit 1", "title": "Photograph receipts at the till",
+     "does": "The phone photo goes straight into one shared folder, before the paper has a chance to go missing.",
+     "got": "<b>No more lost receipts</b> at the end of the quarter.",
+     "cue": "No more lost receipts"},
+    {"n": 3, "role": "item", "numeral": "2", "idx": "Habit 2", "title": "Twelve fixed categories",
+     "does": "Every cost goes into one of twelve categories chosen once, so nothing needs deciding at month end.",
+     "got": "Month-end sorting went from a whole weekend to <b>forty minutes.</b>",
+     "cue": "forty minutes"},
+    {"n": 4, "role": "item", "numeral": "3", "idx": "Habit 3", "title": "Reconcile on Fridays",
+     "does": "Match the bank feed against the receipts folder for fifteen minutes every Friday afternoon.",
+     "got": "The year-end pack reached the accountant <b>three weeks early.</b>",
+     "cue": "three weeks early"},
+    {"n": 5, "role": "graph", "idx": "How they connect", "title": "Each habit feeds the next.",
+     "nodes": ["Photo", "Category", "Friday match", "Year-end pack"],
+     "edges": [[0, 1], [1, 2], [2, 3], [3, 0]],
+     "lit": [[1, 2]]}
+  ],
+  "caption": "INVENTED EXAMPLE CAPTION. Same shop, same owner, three habits."
+}

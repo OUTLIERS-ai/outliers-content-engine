@@ -1,0 +1,81 @@
+{
+  "_notes": {
+    "HOW TO USE THIS FILE": "Copy this file to config.json in the same folder and change the values in your copy. The programs read config.json first and fall back to this file with a warning. Every folder below is relative to the repo root (the folder holding engine/) unless you write a full path. JSON allows no comments, which is why the notes live here.",
+    "ABOUT THE THRESHOLDS": "Every number and rule marked 'taste' below is a starting default. Each came from one person's rejected drafts, not from research and not from your audience. Keep one only if it matches what you cut from your own drafts. Each note says how to switch it off.",
+
+    "author_name": "Your name as it appears on LinkedIn. Shown on the review page cards.",
+    "author_initials": "Two or three letters shown in the round avatar on the review page.",
+    "author_headline": "Your LinkedIn headline, shown under your name on the review page.",
+
+    "signoff_line": "A closing line you put at the end of posts, if you use one. Leave it as an empty string if you do not. It is also removed before posts are compared or hashed, so a shared sign-off never counts as repetition.",
+    "signoff_rule": "'required' = a draft whose last line is not exactly signoff_line fails (post_checks.py and batch_checks.py). 'optional' or 'off' = never checked. Default 'off'.",
+
+    "banned_subjects": "Subjects your reader does not care about, checked in every brief by commission_gate.py. Each item is {pattern, reason}. pattern is a plain word or phrase, such as \"crypto\" or \"going viral\": it matches whole words only, ignoring capital letters and extra spaces, so \"crypto\" does not match \"cryptography\". Type no backslashes. Only if you know regular expressions, add \"regex\": true to an item and its pattern is read as one; remember JSON needs 2 backslashes where a regular expression has 1. The gate reports a pattern that can never match instead of ignoring it. reason is shown when it fires. A brief can override it with a lane_justified: field saying why this one is different. The single item shipped is a placeholder that will never match real text: replace it or delete it. An empty list [] switches the check off.",
+    "premise_source_refused_words": "Words that mean a brief's premise_source is not a real source (a guess, not a transcript line or a post). Empty list [] switches this off.",
+    "pitch_words": "Selling phrases that fail a brief if they appear in its body. General defaults, not personal. Empty list [] switches this off.",
+    "hook_first_line_max_words": "Taste. A brief's hook line 1 longer than this fails the gate. Default 14. Set to null to switch off.",
+
+    "uncontracted_negative_hard_at": "Taste. A post with this many or more uncontracted negatives ('does not', 'cannot', 'will not') fails; one is only flagged. Default 2, because stiff uncontracted English is a strong sign of machine writing. Set to null to switch off.",
+    "you_density_hard": "Taste. Share of sentences containing 'you'/'your' at which a post fails (0.55 = 55%). Posts that keep telling a stranger about their own week read as presumptuous. Only applies to posts of 6+ sentences. Set to null to switch off.",
+    "you_density_flag": "Taste. Share of sentences with 'you'/'your' at which a post is only flagged. Default 0.40. Set to null to switch off.",
+    "long_sentence_words": "Taste. A long post must contain at least one sentence of this many words, to break a flat rhythm of short sentences. Default 30. Set to null to switch off.",
+    "long_sentence_applies_over_words": "Taste. The long-sentence rule only fails posts longer than this many words; shorter posts get a flag. Default 250. Set to null to make it fail posts of any length.",
+    "banned_phrases": "Plain phrases (not patterns) that fail any draft, matched ignoring case and extra spaces. Ships empty; add phrases you keep cutting. Single words are better kept in your-voice/banned_words.json.",
+    "em_dash_rule": "Taste. 'hard' = an em dash or en dash fails the post, 'flag' = reported only, 'off' = not checked. Default 'hard', because em dashes are a common sign of machine writing.",
+    "vague_filler_rule": "Taste. 'the thing', 'this thing' and 'stuff' in place of the real noun. 'hard', 'flag' or 'off'. Default 'hard'.",
+
+    "batch_length_short": "Taste. batch_checks.py flags a wave with no post this short or shorter (words). Default 150. Set to null to switch off.",
+    "batch_length_long": "Taste. batch_checks.py flags a wave with no post this long or longer (words). Default 280. Set to null to switch off.",
+
+    "drafts_dir": "The drafts folder used when you give no folder on the command line (review page, batch checks, stamp-all). Ships pointing at the invented example wave so the kit works on day one. Change it to briefs/<YOUR-WAVE>/drafts when you start your own wave.",
+    "briefs_dir": "Where your wave folders live. Each wave is briefs/<WAVE>/ with GROUNDING.md, the briefs, CUTS.md and drafts/.",
+    "preview_output": "Where preview_linkedin.py writes the review page.",
+
+    "transcript_dirs": "Folders holding your call transcripts, for mine_transcripts.py. Every .md, .txt, .vtt and .srt inside is read, at any depth. A file is only read if its name carries a date written YYYY-MM-DD.",
+    "transcript_from_date": "Only transcripts dated on or after this day (YYYY-MM-DD) are mined.",
+    "my_speaker_labels": "Every label your recorder uses for YOU, exactly as it appears in the transcripts (open one and copy it). Several are fine, e.g. a full name and a first name. mine_transcripts.py refuses to run while this is a placeholder or empty.",
+    "mining_output_dir": "Where the monthly files of your own lines are written. mine_transcripts.py writes nowhere else, and refuses the repo root itself.",
+    "mining_min_turn_chars": "Your lines shorter than this many characters ('Yeah.', 'Right.') are dropped and counted. Default 45.",
+    "include_other_speaker_context": "Privacy. false (the default) = the monthly files contain only your own lines. true = the other person's previous line is also written above each of yours. That helps you spot a line the recorder wrongly labelled as yours, but it copies their words, their names, and figures about their business into your files, and into anything Claude reads from them. Leave it false unless your recorder often mixes up speakers, and never put those files anywhere public."
+  },
+
+  "author_name": "Your Name",
+  "author_initials": "YN",
+  "author_headline": "Your one-line LinkedIn headline goes here",
+
+  "signoff_line": "",
+  "signoff_rule": "off",
+
+  "banned_subjects": [
+    {
+      "pattern": "PLACEHOLDER BANNED SUBJECT REPLACE ME",
+      "reason": "Placeholder. Replace with a subject your reader does not care about, and say why."
+    }
+  ],
+  "premise_source_refused_words": ["inferred", "assumed", "guessed", "made up", "reasoned"],
+  "pitch_words": ["sign up", "buy now", "dm me", "limited spots", "last chance", "enrol", "enroll"],
+  "hook_first_line_max_words": 14,
+
+  "uncontracted_negative_hard_at": 2,
+  "you_density_hard": 0.55,
+  "you_density_flag": 0.40,
+  "long_sentence_words": 30,
+  "long_sentence_applies_over_words": 250,
+  "banned_phrases": [],
+  "em_dash_rule": "hard",
+  "vague_filler_rule": "hard",
+
+  "batch_length_short": 150,
+  "batch_length_long": 280,
+
+  "drafts_dir": "example/briefs/EXAMPLE-WAVE/drafts",
+  "briefs_dir": "briefs",
+  "preview_output": "preview/linkedin-preview.html",
+
+  "transcript_dirs": ["transcripts"],
+  "transcript_from_date": "2025-01-01",
+  "my_speaker_labels": ["Your Name As Your Recorder Writes It"],
+  "mining_output_dir": "your-voice/opinions/turns",
+  "mining_min_turn_chars": 45,
+  "include_other_speaker_context": false
+}
