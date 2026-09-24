@@ -370,7 +370,7 @@ def main():
     kitconfig.utf8_console()
     args = sys.argv[1:]
     if "-h" in args or "--help" in args:
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 0
     unknown = [a for a in args if a not in ("--selftest", "--stats")]
     if unknown:

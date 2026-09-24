@@ -119,11 +119,11 @@ Save it as `specs/<id>.json`, following `specs/SPEC-FORMAT.md`. Rules for the wo
 
 ## Step 5. Check, render, look
 
-From this `carousel/` folder:
+Run these from this `carousel/` folder. Start each command with `python3` (on Windows: `python`):
 
 ```
-python check/slide_checks.py specs/<id>.json
-python build_carousel.py specs/<id>.json
+python3 check/slide_checks.py specs/<id>.json
+python3 build_carousel.py specs/<id>.json
 ```
 
 1. Fix every hard fail the checker reports. Do not use `--force` to get past a hard fail unless the

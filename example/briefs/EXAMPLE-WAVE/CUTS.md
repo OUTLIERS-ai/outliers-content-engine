@@ -29,19 +29,20 @@ INVENTED EXAMPLE. Sam is not a real person.
   opinion, so the check reads them as 1 idea told 3 ways (the same words, such as invoice, job and
   bill, turn up in 2 or more posts). A real wave takes a different opinion for every post (10 in a
   first wave, 20 later), and this check is how you catch a wave that quietly repeated itself. Run
-  `python engine/batch_checks.py --dir example/briefs/EXAMPLE-WAVE/drafts` to see it.
+  `python3 engine/batch_checks.py --dir example/briefs/EXAMPLE-WAVE/drafts`
+  (on Windows: `python engine/batch_checks.py --dir example/briefs/EXAMPLE-WAVE/drafts`) to see it.
 - Checks that rejected no draft this wave: not judged. 3 drafts are too few to say whether a check
   is working.
 
 ## Lessons added from this wave
 
 Sam agreed to 2 lessons. The keep on EX-01-02 was recorded with its reason, and no lesson was drawn
-from 1 keep alone.
+from 1 keep alone. Start each command with `python3` (on Windows: `python`):
 
 ```
-python engine/findings.py add --finding "A draft that did sums lost the reader by the second number." --action "Use at most 1 number per post. If an opinion needs sums, keep only the 1 number that stings and cut the working." --evidence "EXAMPLE-WAVE: 1 of 3 drafts marked REWRITE for this. Sam: 'My lot switch off at the second number.'" --source "example/briefs/EXAMPLE-WAVE/CUTS.md" --steps body
+python3 engine/findings.py add --finding "A draft that did sums lost the reader by the second number." --action "Use at most 1 number per post. If an opinion needs sums, keep only the 1 number that stings and cut the working." --evidence "EXAMPLE-WAVE: 1 of 3 drafts marked REWRITE for this. Sam: 'My lot switch off at the second number.'" --source "example/briefs/EXAMPLE-WAVE/CUTS.md" --steps body
 
-python engine/findings.py add --finding "A draft told the reader off, and the owner cut it for sounding like a telling-off." --action "Write from the reader's side. Never call the reader a name the owner would not say to a client's face, such as lazy, undisciplined or careless." --evidence "EXAMPLE-WAVE: 1 of 3 drafts cut for this. Sam: 'I'd never call a client undisciplined.' Also given as a ruling for every future draft." --source "example/briefs/EXAMPLE-WAVE/CUTS.md" --steps brief,body
+python3 engine/findings.py add --finding "A draft told the reader off, and the owner cut it for sounding like a telling-off." --action "Write from the reader's side. Never call the reader a name the owner would not say to a client's face, such as lazy, undisciplined or careless." --evidence "EXAMPLE-WAVE: 1 of 3 drafts cut for this. Sam: 'I'd never call a client undisciplined.' Also given as a ruling for every future draft." --source "example/briefs/EXAMPLE-WAVE/CUTS.md" --steps brief,body
 ```
 
 | Lesson id | From which verdict | The action, in 1 line |
@@ -50,7 +51,8 @@ python engine/findings.py add --finding "A draft told the reader off, and the ow
 | [the id the second command prints] | 03 the VAT account | Write from the reader's side, never call them names |
 
 After both are added, stamping the brief again writes them into it:
-`python engine/commission_gate.py --stamp example/briefs/EXAMPLE-WAVE/EX-01-brief.md`
+`python3 engine/commission_gate.py --stamp example/briefs/EXAMPLE-WAVE/EX-01-brief.md`
+(on Windows: `python engine/commission_gate.py --stamp example/briefs/EXAMPLE-WAVE/EX-01-brief.md`)
 
 ## The stopping test
 

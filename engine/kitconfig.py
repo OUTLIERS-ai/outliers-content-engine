@@ -23,11 +23,23 @@ Run:  python engine/kitconfig.py              print the settings in force and wh
 import copy
 import json
 import os
+import re
 import sys
 import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+
+# The command that starts Python, as a member types it. A Mac has `python3` and no plain
+# `python`; Windows has `python`. Used only in lines a member reads, so on Windows every line
+# prints exactly as before.
+PY = "python3" if sys.platform == "darwin" else "python"
+_PYTHON_COMMAND = re.compile(r"(?<![\w./-])python(?= )")
+
+
+def for_this_computer(text):
+    """text (help text, a hint) with each `python` command written as this computer needs it."""
+    return text if PY == "python" else _PYTHON_COMMAND.sub(PY, text)
 
 # Built-in defaults. These match config.example.json; see the "_notes" there for what each does.
 DEFAULTS = {

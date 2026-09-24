@@ -35,7 +35,8 @@ The wave folder is: [FILL IN: e.g. briefs/W01]
 
 4. For each correction I made (every CUT, every REWRITE, and any keep where I said what made it
    work), write 1 lesson using prompts/add-a-lesson.md, then add it:
-     python engine/findings.py add --finding "..." --action "..." --evidence "..." --source "..." --steps <steps>
+     python3 engine/findings.py add --finding "..." --action "..." --evidence "..." --source "..." --steps <steps>
+     (on Windows: `python engine/findings.py add --finding "..." --action "..." --evidence "..." --source "..." --steps <steps>`)
    The action must be an instruction a writer can follow next wave. The evidence is what happened
    in this wave, with counts. The source is <wave folder>/CUTS.md.
    Show me each lesson before you add it. Add only the ones I agree with.
@@ -49,8 +50,8 @@ The wave folder is: [FILL IN: e.g. briefs/W01]
    stamped.
 
 6. For each REWRITE: keep the earlier draft, add the new version under the next ## Draft N heading
-   in the same file, run python engine/post_checks.py on it, and tell me when the rewrites are
-   ready to read.
+   in the same file, run python3 engine/post_checks.py on it
+   (on Windows: `python engine/post_checks.py`), and tell me when the rewrites are ready to read.
 
 7. Update "The stopping test" section with how many drafts from this engine have been posted so
    far.

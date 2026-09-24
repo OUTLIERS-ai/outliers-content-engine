@@ -109,7 +109,9 @@ def main(argv):
         print(text)
         return 0 if good else 1
     if len(argv) < 2:
-        print(__doc__)
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import kitconfig
+        print(kitconfig.for_this_computer(__doc__))
         return 2
     worst = 0
     for a in argv[1:]:

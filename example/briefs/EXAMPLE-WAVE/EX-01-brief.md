@@ -21,8 +21,10 @@ INVENTED EXAMPLE. Sam is not a real person.
 
 > This is a filled copy of `briefs/_TEMPLATE-WAVE/WAVE-COMMISSION.md` for Sam Price, an invented
 > bookkeeper. It has no lessons block yet. To see the loop, stamp it and run the gate:
-> `python engine/commission_gate.py --stamp example/briefs/EXAMPLE-WAVE/EX-01-brief.md`
-> then `python engine/commission_gate.py example/briefs/EXAMPLE-WAVE/EX-01-brief.md`.
+> `python3 engine/commission_gate.py --stamp example/briefs/EXAMPLE-WAVE/EX-01-brief.md`
+> (on Windows: `python engine/commission_gate.py --stamp example/briefs/EXAMPLE-WAVE/EX-01-brief.md`)
+> then `python3 engine/commission_gate.py example/briefs/EXAMPLE-WAVE/EX-01-brief.md`
+> (on Windows: `python engine/commission_gate.py example/briefs/EXAMPLE-WAVE/EX-01-brief.md`).
 
 > **For the writer: the opinions below are Sam's, word for word, and cannot be altered.** Build
 > each post out of its opinion. Do not improve the wording of a quote, do not add an opinion of your

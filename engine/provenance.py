@@ -162,7 +162,7 @@ def audit():
     L = ["PROVENANCE AUDIT  (%s)" % _now()[:10], "=" * 58, "stamped records  %d" % len(led)]
     if not led:
         L += ["", "  Nothing stamped yet. Before you publish a post, run:",
-              "    python engine/provenance.py stamp <draft.md>"]
+              "    " + kitconfig.PY + " engine/provenance.py stamp <draft.md>"]
         return "\n".join(L)
     L.append("by author        %s" % dict(collections.Counter(r.get("author", "?") for r in led)))
     L.append("by wave          %s" % dict(collections.Counter(r.get("wave", "?") for r in led)))
@@ -229,7 +229,7 @@ def main(argv):
         print(text)
         return 0 if good else 1
     if len(argv) < 2:
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 2
     cmd = argv[1]
     if cmd == "stamp":
@@ -250,7 +250,7 @@ def main(argv):
     elif cmd == "audit":
         print(audit())
     else:
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 2
     return 0
 

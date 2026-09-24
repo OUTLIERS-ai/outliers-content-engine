@@ -349,8 +349,8 @@ def check_post(text):
     uni = unicode_scrub.scan(body)
     if not uni["clean"]:
         detail = ", ".join("%s x%d" % (h["codepoint"], h["count"]) for h in uni["hits"][:6])
-        flags.append("%d invisible character(s): %s. Fix with: python engine/unicode_scrub.py "
-                     "<draft.md> --fix" % (uni["total"], detail))
+        flags.append("%d invisible character(s): %s. Fix with: %s engine/unicode_scrub.py "
+                     "<draft.md> --fix" % (uni["total"], detail, kitconfig.PY))
 
     # --- sourcing shown to the reader ---------------------------------------------------
     ah, af = assert_not_evidence.scan(body)

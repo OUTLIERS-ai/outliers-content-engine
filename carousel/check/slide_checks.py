@@ -499,7 +499,9 @@ def main(argv=None) -> int:
         rules_path = args[i + 1]
         del args[i:i + 2]
     if len(args) != 1:
-        print(__doc__)
+        # A Mac has `python3` and no plain `python`; Windows prints exactly as before.
+        print(__doc__ if sys.platform != "darwin"
+              else re.sub(r"(?<![\w./-])python(?= )", "python3", __doc__))
         return 2
     spec = json.loads(Path(args[0]).read_text(encoding="utf-8"))
     r = check(spec, load_rules(rules_path))

@@ -22,9 +22,9 @@ all of them at once.**
    only your own lines. Set it to `true` and the other person's previous line is written above
    each of yours: it makes a wrongly labelled line easier to spot, but it copies their words, names
    and figures into the pack, and Claude reads all of it.
-4. **Pull your lines out:**
+4. **Pull your lines out** (on Windows: `python engine/mine_transcripts.py`):
    ```
-   python engine/mine_transcripts.py
+   python3 engine/mine_transcripts.py
    ```
    It writes 1 pack per month with your turns, each with the file and line number. The other
    person's previous line is added above each of yours only when `include_other_speaker_context`

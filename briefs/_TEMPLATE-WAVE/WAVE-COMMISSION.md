@@ -24,8 +24,10 @@ format_rationale: "[FILL IN: optional. Why this format, and how the lengths shou
 > opinions, later waves list 20 once you have at least 20. Delete the rows you do not use.
 > **The gate refuses the brief while any `[FILL IN` is left anywhere in this file**, and prints the
 > line numbers.
-> Do not write a lessons block yourself: `python engine/commission_gate.py --stamp <this file>`
-> writes it at the bottom. Then run `python engine/commission_gate.py <this file>` until it prints
+> Do not write a lessons block yourself: `python3 engine/commission_gate.py --stamp <this file>`
+> (on Windows: `python engine/commission_gate.py --stamp <this file>`) writes it at the bottom.
+> Then run `python3 engine/commission_gate.py <this file>`
+> (on Windows: `python engine/commission_gate.py <this file>`) until it prints
 > MAY BE BRIEFED. Delete these instruction lines when you are done.
 > See `example/briefs/EXAMPLE-WAVE/EX-01-brief.md` for a filled version.
 

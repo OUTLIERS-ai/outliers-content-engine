@@ -191,7 +191,8 @@ def brief(step=None):
     if not live:
         return ("WHAT WAS LEARNED THAT CHANGES THIS BRIEF\n"
                 "  No lessons on file yet. That is normal before your first cuts.\n"
-                "  After you cut or rewrite a draft, add one: python engine/findings.py add ...\n")
+                "  After you cut or rewrite a draft, add one: " + kitconfig.PY
+                + " engine/findings.py add ...\n")
     if step:
         hits = [f for f in live if step in f.get("steps", [])]
         if not hits:
@@ -246,7 +247,7 @@ def audit():
     if not runs:
         if _gate_is_wired():
             L += ["  Nothing has been stamped into a brief yet. This clears the first time you run:",
-                  "    python engine/commission_gate.py --stamp <brief.md>"]
+                  "    " + kitconfig.PY + " engine/commission_gate.py --stamp <brief.md>"]
         else:
             L += ["  ** commission_gate.py is missing or has no lessons check. **",
                   "  Lessons are being written down and nothing reads them back."]
@@ -408,12 +409,12 @@ def main(argv):
         print(text)
         return 0 if good else 1
     if not a or a[0] in ("-h", "--help", "help"):
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 0 if a else 2
     cmd = a[0]
     if cmd in OPTIONS:
         if "-h" in a[1:] or "--help" in a[1:]:
-            print(__doc__)
+            print(kitconfig.for_this_computer(__doc__))
             return 0
         check_options(cmd, a[1:])
     if cmd == "audit":

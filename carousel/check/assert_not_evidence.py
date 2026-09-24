@@ -114,4 +114,6 @@ if __name__ == "__main__":
         h, f = scan(" ".join(sys.argv[1:]))
         print("\n".join(h + f) or "clean")
         sys.exit(1 if h else 0)
-    print(__doc__)
+    # A Mac has `python3` and no plain `python`; Windows prints exactly as before.
+    print(__doc__ if sys.platform != "darwin"
+          else re.sub(r"(?<![\w./-])python(?= )", "python3", __doc__))

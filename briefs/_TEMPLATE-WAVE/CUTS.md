@@ -50,7 +50,8 @@
 ## Lessons added from this wave
 
 Each correction above becomes a lesson with an action, through
-`python engine/findings.py add ...` (see `prompts/add-a-lesson.md`).
+`python3 engine/findings.py add ...`
+(on Windows: `python engine/findings.py add ...`). See `prompts/add-a-lesson.md`.
 
 | Lesson id | From which verdict | The action, in 1 line |
 |---|---|---|

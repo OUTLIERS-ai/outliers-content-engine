@@ -23,7 +23,8 @@ The drafts folder is the drafts/ folder beside the brief.
 
 BEFORE YOU WRITE
 
-1. Run: python engine/commission_gate.py <the brief>
+1. Run: python3 engine/commission_gate.py <the brief>
+   (on Windows: `python engine/commission_gate.py <the brief>`)
    If it prints NOT BRIEFED, stop. Tell me the reasons it gave. Do not write a single draft
    against a brief that fails.
 
@@ -86,17 +87,20 @@ WRITING THE FILES
 
 AFTER WRITING
 
-1. Run: python engine/post_checks.py <draft> on every draft.
+1. Run: python3 engine/post_checks.py <draft> on every draft
+   (on Windows: `python engine/post_checks.py <draft>`).
    Fix every hard fail in your own drafts, then run the check again.
    Flags are advice. If clearing a flag would make the post softer or vaguer, leave the flag and
    say why.
    If a post was written or rewritten by me, never change my words to pass a check. Report the
    failure once and let me decide.
 
-2. Run: python engine/batch_checks.py --dir <drafts folder>
+2. Run: python3 engine/batch_checks.py --dir <drafts folder>
+   (on Windows: `python engine/batch_checks.py --dir <drafts folder>`)
    Report what it says. Fix a hard fail by changing the drafts, not by explaining it away.
 
-3. Run: python engine/preview_linkedin.py --dir <drafts folder> --open
+3. Run: python3 engine/preview_linkedin.py --dir <drafts folder> --open
+   (on Windows: `python engine/preview_linkedin.py --dir <drafts folder> --open`)
 
 4. Do not rank, score or pick among the drafts. Do not tell me which are best. I cut on my own
    taste.

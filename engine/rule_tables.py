@@ -158,4 +158,6 @@ if __name__ == "__main__":
         _t, _ok = selftest()
         print(_t)
         sys.exit(0 if _ok else 1)
-    print(__doc__)
+    sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
+    import kitconfig
+    print(kitconfig.for_this_computer(__doc__))

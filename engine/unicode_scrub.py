@@ -185,7 +185,7 @@ def main() -> int:
         if r["clean"]:
             print("clean")
         else:
-            print("fix with: python engine/unicode_scrub.py <file> --fix")
+            print("fix with: %s engine/unicode_scrub.py <file> --fix" % kitconfig.PY)
     return 0 if r["clean"] else 1
 
 

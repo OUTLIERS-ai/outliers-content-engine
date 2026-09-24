@@ -6,7 +6,8 @@
 
 ## How it was done
 
-1. `python engine/mine_transcripts.py` read every transcript dated from [FILL IN: start date,
+1. `python3 engine/mine_transcripts.py` (on Windows: `python engine/mine_transcripts.py`)
+   read every transcript dated from [FILL IN: start date,
    YYYY-MM-DD] in [FILL IN: the transcript folders, as set in config.json] and wrote out my turns
    only, each with the file and line number. `include_other_speaker_context` was [FILL IN: false,
    so the packs contain only my lines / true, so the other person's previous line sits above each of

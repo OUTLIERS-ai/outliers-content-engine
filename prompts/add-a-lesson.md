@@ -62,7 +62,8 @@ Turn the correction below into 1 lesson for data/findings.jsonl.
    Never write a rule from the rejected side alone when kept drafts exist that bear on it: check
    the keeps in CUTS.md first.
 7. Show me the lesson. If I agree, run:
-   python engine/findings.py add --finding "..." --action "..." --evidence "..." --source "..." --steps <steps>
+   python3 engine/findings.py add --finding "..." --action "..." --evidence "..." --source "..." --steps <steps>
+   (on Windows: `python engine/findings.py add --finding "..." --action "..." --evidence "..." --source "..." --steps <steps>`)
 8. Report the id it printed.
 
 The correction:
@@ -71,13 +72,13 @@ The correction:
 
 ## After adding lessons
 
-1. Stamp the next brief so it carries them:
+1. Stamp the next brief so it carries them (on Windows: `python engine/commission_gate.py --stamp <brief.md>`):
    ```
-   python engine/commission_gate.py --stamp <brief.md>
+   python3 engine/commission_gate.py --stamp <brief.md>
    ```
-2. Check the lessons are actually reaching briefs:
+2. Check the lessons are actually reaching briefs (on Windows: `python engine/findings.py audit`):
    ```
-   python engine/findings.py audit
+   python3 engine/findings.py audit
    ```
    If the audit reports a lesson that has gone unread while briefs went past it, the loop is not
    working. Find out why before the next wave.

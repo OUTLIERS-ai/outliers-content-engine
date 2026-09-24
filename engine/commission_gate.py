@@ -298,7 +298,8 @@ def check(path: Path):
     stamped = _stamped_ids(text)
     want = _findings.live_ids()
     if stamped is None:
-        L("LESSONS", "carries no lessons block. Run: python engine/commission_gate.py --stamp "
+        L("LESSONS", "carries no lessons block. Run: " + kitconfig.PY
+                     + " engine/commission_gate.py --stamp "
                      + str(path))
     elif sorted(stamped) != want:
         missing = [i for i in want if i not in stamped]
@@ -438,7 +439,7 @@ def main(argv):
         print(text)
         return 0 if good else 1
     if len(argv) < 2:
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 2
     if "--stamp" in argv:
         rest = [a for a in argv[1:] if a != "--stamp"]

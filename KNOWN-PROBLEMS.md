@@ -54,7 +54,7 @@ ones you type into `your-voice/my-posts.csv`.
 
 - **The engine** (`engine/`) runs on Python 3.9 or later. This was tested on 3.9.
 - **The carousel maker** needs Python 3.10 or later. On Windows with Python 3.9,
-  `pip install playwright` fails: a part Playwright depends on, called greenlet, will not install
+  installing Playwright fails: a part Playwright depends on, called greenlet, will not install
   there without Microsoft's C++ build tools. Installing Python 3.10 or later avoids this.
 
 ## 9. The gate checks that a brief is filled in, not that it is good

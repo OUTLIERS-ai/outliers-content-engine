@@ -144,10 +144,10 @@ def main(argv):
         print(text)
         return 0 if good else 1
     if len(argv) < 2:
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 2
     if "-h" in argv or "--help" in argv:
-        print(__doc__)
+        print(kitconfig.for_this_computer(__doc__))
         return 0
     worst = 0
     for a in argv[1:]:
