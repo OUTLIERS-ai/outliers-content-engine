@@ -21,7 +21,7 @@ Usage:
   python slide_checks.py <spec.json> --rules FILE    use a different house rules file
   python slide_checks.py --selftest                  runs the checker on invented specs
 
-Standard library only. Python 3.9+. Windows and Mac.
+Standard library only. Python 3.9+, on any computer.
 """
 from __future__ import annotations
 
