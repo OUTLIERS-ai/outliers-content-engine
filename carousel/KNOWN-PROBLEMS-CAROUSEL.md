@@ -76,7 +76,8 @@ size. The checker reads words; only a person reading the pictures sees the slide
 - **Diagram labels.** Point names longer than about 14 characters on the left or right of a diagram
   can run off the slide; the renderer stops if they do.
 - **A diagram must be the last slide**, so a deck with a diagram has no call-to-action slide.
-- **Built and tested on Windows only.**
+- **Tested on Windows and on 2 Macs, not on Linux.** The Macs (Apple chip and Intel, macOS 15) were
+  checked on 2026-10-08.
 - **Needs Python 3.10 or later.** On Windows with Python 3.9, Playwright will not install without
   Microsoft's C++ build tools.
 - **No proof carousels outperform text posts.** Earlier performance numbers showed no clear difference

@@ -119,8 +119,8 @@ If you want no logo at all, add `--no-logo` to the render command.
   every deck passed every automatic check and the owner still chose not to post any of them. The
   checker catches written-rule faults. It cannot judge whether the subject is worth a reader's time.
   See `KNOWN-PROBLEMS-CAROUSEL.md`.
-- **Mac and Linux.** Built and tested on Windows. The fonts ship with the kit, so layout should match on
-  other systems, but it has not been run there.
+- **Linux.** Built on Windows, and on 2026-10-08 run on 2 Macs (Apple chip and Intel, macOS 15), where
+  the slides came out the same. It has not been run on Linux.
 - **Your own fonts and logos.** Tested only with the bundled fonts and the placeholder logos. A very
   tall or very wide logo may need the size and corner settings changed; the renderer stops if text
   sits on it.
