@@ -17,7 +17,7 @@ Playwright depends on (greenlet) will not install there without Microsoft's C++ 
 with `python --version`. Then, from this `carousel/` folder:
 
 ```
-pip install playwright img2pdf Pillow
+pip install playwright Pillow
 python -m playwright install chromium
 python check/slide_checks.py --selftest
 python build_carousel.py specs/example-list.json

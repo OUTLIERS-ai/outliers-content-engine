@@ -22,7 +22,7 @@ Usage:
 The theme comes from the spec's "theme" field ("light" or "dark"). --theme overrides it.
 
 Needs: Python 3.10+ (on Windows, Playwright will not install on 3.9 without C++ build tools),
-       pip install playwright img2pdf Pillow, then: python -m playwright install chromium
+       pip install playwright Pillow, then: python -m playwright install chromium
 """
 from __future__ import annotations
 
@@ -75,6 +75,56 @@ def save_image_safely(img, path: Path, fmt: str, **kw) -> None:
     finally:
         if tmp.exists():
             tmp.unlink()
+
+
+def jpegs_to_pdf(jpg_paths) -> bytes:
+    """A PDF with 1 page per JPEG, each JPEG copied in byte for byte (no re-compression).
+
+    Replaces img2pdf, whose pikepdf dependency has no ready-made download for Intel Macs from
+    pikepdf 10.14 on, so `pip install img2pdf` failed there. Page size matches img2pdf: the image's
+    own dpi if it records one, otherwise 96 dpi (a 2160 x 2700 slide is a 1620 x 2025 pt page).
+    """
+    from PIL import Image
+
+    objs = []  # objs[i] is object number i + 1
+
+    def add(body: bytes) -> int:
+        objs.append(body)
+        return len(objs)
+
+    add(b"<< /Type /Catalog /Pages 2 0 R >>")
+    add(b"")  # the page tree, filled in once the pages exist
+    kids = []
+    for p in jpg_paths:
+        data = Path(p).read_bytes()
+        with Image.open(p) as im:
+            if im.format != "JPEG" or im.mode not in ("RGB", "L"):
+                raise ValueError(f"{p}: expected an RGB or greyscale JPEG, got {im.format} {im.mode}")
+            w, h = im.size
+            dpi = im.info.get("dpi") or (96, 96)
+            space = b"/DeviceRGB" if im.mode == "RGB" else b"/DeviceGray"
+        pw, ph = w * 72 / dpi[0], h * 72 / dpi[1]
+        img = add(b"<< /Type /XObject /Subtype /Image /Width %d /Height %d /ColorSpace %s "
+                  b"/BitsPerComponent 8 /Filter /DCTDecode /Length %d >>\nstream\n%s\nendstream"
+                  % (w, h, space, len(data), data))
+        draw = b"q %.4f 0 0 %.4f 0 0 cm /Im0 Do Q" % (pw, ph)
+        content = add(b"<< /Length %d >>\nstream\n%s\nendstream" % (len(draw), draw))
+        kids.append(add(b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 %.4f %.4f] "
+                        b"/Resources << /XObject << /Im0 %d 0 R >> >> /Contents %d 0 R >>"
+                        % (pw, ph, img, content)))
+    objs[1] = (b"<< /Type /Pages /Kids [%s] /Count %d >>"
+               % (b" ".join(b"%d 0 R" % k for k in kids), len(kids)))
+
+    out = bytearray(b"%PDF-1.3\n%\xe2\xe3\xcf\xd3\n")
+    offsets = []
+    for n, body in enumerate(objs, start=1):
+        offsets.append(len(out))
+        out += b"%d 0 obj\n%s\nendobj\n" % (n, body)
+    xref = len(out)
+    out += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objs) + 1)
+    out += b"".join(b"%010d 00000 n \n" % o for o in offsets)
+    out += b"trailer\n<< /Size %d /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (len(objs) + 1, xref)
+    return bytes(out)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -285,7 +335,6 @@ def build(spec_path: Path, theme=None, force=False, no_logo=False) -> Path:
     print(f"2. rendering {total} slides ({theme})")
 
     from PIL import Image
-    import img2pdf
     from playwright.sync_api import sync_playwright
 
     pngs = []
@@ -354,7 +403,7 @@ def build(spec_path: Path, theme=None, force=False, no_logo=False) -> Path:
         save_image_safely(Image.open(p).convert("RGB"), j, "JPEG", quality=90, optimize=True, progressive=True)
         jpgs.append(str(j))
     pdf = out_dir / f"{base}.pdf"
-    write_bytes_safely(pdf, img2pdf.convert(jpgs))
+    write_bytes_safely(pdf, jpegs_to_pdf(jpgs))
 
     print("4. writing phone-size copies")
     phones = []

@@ -1,5 +1,4 @@
 # Needs Python 3.10 or later. On Windows, playwright will not install on Python 3.9
 # without Microsoft's C++ build tools. The text engine in engine/ needs none of these.
 playwright>=1.40
-img2pdf>=0.5
 Pillow>=10.0
